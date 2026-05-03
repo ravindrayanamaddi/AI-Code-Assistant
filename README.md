@@ -1,4 +1,4 @@
-# 💻 AI Code Assistant (RAG + FAISS + NLP)
+# 💻 AI Code Assistant 
 
 ## 🚀 Project Overview
 
