@@ -1,9 +1,11 @@
 import re
+import os
 import tempfile
 import subprocess
 
 import streamlit as st
 
+from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
@@ -41,9 +43,6 @@ run_code_option = st.checkbox("Run generated code")
 # --------------------------------------------------
 
 @st.cache_resource
-import os
-from langchain_community.document_loaders import TextLoader, PyPDFLoader
-
 def create_vector_db():
     # Use a RELATIVE path (important for Streamlit Cloud)
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
