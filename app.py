@@ -45,14 +45,7 @@ run_code_option = st.checkbox("Run generated code")
 @st.cache_resource
 def create_vector_db():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    DATA_PATH = os.path.join(BASE_DIR, "data")
-
-    if not os.path.exists(DATA_PATH):
-        os.makedirs(DATA_PATH)
-        raise RuntimeError(
-            f"⚠️ 'data' folder was missing. Created at {DATA_PATH}. "
-            f"Now add files and redeploy."
-        )
+    DATA_PATH = os.path.join(BASE_DIR, "python_examples") 
 
     documents = []
 
@@ -66,10 +59,9 @@ def create_vector_db():
             print(f"Error loading {file}: {e}")
 
     if not documents:
-        raise RuntimeError("❌ No files found in /data folder")
+        raise RuntimeError("❌ No files found in python examples folder")
 
     return documents
-
 # --------------------------------------------------
 # 4. Extract Code, Explanation, Tests from RAG Context
 # --------------------------------------------------
