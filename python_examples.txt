@@ -1,0 +1,590 @@
+Example 1:
+Task: Check if a number is prime
+Code:
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+Explanation:
+A prime number has only two divisors: 1 and itself.
+Test Cases:
+assert is_prime(7) == True
+assert is_prime(10) == False
+
+
+Example 2:
+Task: Reverse a string
+Code:
+def reverse_string(s):
+    return s[::-1]
+Explanation:
+Python slicing reverses the string.
+Test Cases:
+assert reverse_string("hello") == "olleh"
+
+
+Example 3:
+Task: Check palindrome
+Code:
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+Explanation:
+Palindrome reads same forward and backward.
+Test Cases:
+assert is_palindrome("madam") == True
+
+
+Example 4:
+Task: Factorial of a number
+Code:
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+Explanation:
+Factorial is n × (n-1) × ... × 1.
+Test Cases:
+assert factorial(5) == 120
+
+
+Example 5:
+Task: Find max in list
+Code:
+def find_max(lst):
+    return max(lst)
+Explanation:
+Python max() returns largest value.
+Test Cases:
+assert find_max([1,5,2]) == 5
+
+
+Example 6:
+Task: Count vowels
+Code:
+def count_vowels(s):
+    vowels = "aeiouAEIOU"
+    return sum(1 for ch in s if ch in vowels)
+Explanation:
+Counts vowels using generator.
+Test Cases:
+assert count_vowels("hello") == 2
+
+
+Example 7:
+Task: Fibonacci sequence
+Code:
+def fibonacci(n):
+    a, b = 0, 1
+    seq = []
+    for _ in range(n):
+        seq.append(a)
+        a, b = b, a+b
+    return seq
+Explanation:
+Each number is sum of previous two.
+Test Cases:
+assert fibonacci(5) == [0,1,1,2,3]
+
+
+Example 8:
+Task: Check even or odd
+Code:
+def is_even(n):
+    return n % 2 == 0
+Explanation:
+Even numbers divisible by 2.
+Test Cases:
+assert is_even(4) == True
+
+
+Example 9:
+Task: Remove duplicates from list
+Code:
+def remove_duplicates(lst):
+    return list(set(lst))
+Explanation:
+Set removes duplicates.
+Test Cases:
+assert set(remove_duplicates([1,1,2])) == {1,2}
+
+
+Example 10:
+Task: Sum of digits
+Code:
+def sum_digits(n):
+    return sum(int(d) for d in str(n))
+Explanation:
+Convert to string and sum digits.
+Test Cases:
+assert sum_digits(123) == 6
+
+
+Example 11:
+Task: Find second largest number
+Code:
+def second_largest(lst):
+    unique = list(set(lst))
+    unique.sort()
+    return unique[-2]
+Explanation:
+Remove duplicates and sort.
+Test Cases:
+assert second_largest([1,2,3,4]) == 3
+
+
+Example 12:
+Task: Merge two lists
+Code:
+def merge_lists(a, b):
+    return a + b
+Explanation:
+Concatenation merges lists.
+Test Cases:
+assert merge_lists([1],[2]) == [1,2]
+
+
+Example 13:
+Task: Find common elements
+Code:
+def common_elements(a, b):
+    return list(set(a) & set(b))
+Explanation:
+Set intersection finds common items.
+Test Cases:
+assert set(common_elements([1,2],[2,3])) == {2}
+
+
+Example 14:
+Task: Sort dictionary by value
+Code:
+def sort_dict(d):
+    return dict(sorted(d.items(), key=lambda x: x[1]))
+Explanation:
+Sort dictionary by values.
+Test Cases:
+assert list(sort_dict({'a':2,'b':1}).keys()) == ['b','a']
+
+
+Example 15:
+Task: Check anagram
+Code:
+def is_anagram(a, b):
+    return sorted(a) == sorted(b)
+Explanation:
+Anagrams have same characters.
+Test Cases:
+assert is_anagram("listen","silent") == True
+
+
+Example 16:
+Task: Count words in sentence
+Code:
+def count_words(s):
+    return len(s.split())
+Explanation:
+Split sentence by spaces.
+Test Cases:
+assert count_words("hello world") == 2
+
+
+Example 17:
+Task: Find GCD
+Code:
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+Explanation:
+Euclidean algorithm.
+Test Cases:
+assert gcd(12,18) == 6
+
+
+Example 18:
+Task: Check Armstrong number
+Code:
+def is_armstrong(n):
+    digits = str(n)
+    power = len(digits)
+    return sum(int(d)**power for d in digits) == n
+Explanation:
+Armstrong number equals sum of digits^power.
+Test Cases:
+assert is_armstrong(153) == True
+
+
+Example 19:
+Task: Flatten nested list
+Code:
+def flatten(lst):
+    return [item for sublist in lst for item in sublist]
+Explanation:
+List comprehension flattens list.
+Test Cases:
+assert flatten([[1,2],[3]]) == [1,2,3]
+
+
+Example 20:
+Task: Binary search
+Code:
+def binary_search(arr, x):
+    left, right = 0, len(arr)-1
+    while left <= right:
+        mid = (left+right)//2
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] < x:
+            left = mid+1
+        else:
+            right = mid-1
+    return -1
+Explanation:
+Binary search works on sorted arrays.
+Test Cases:
+assert binary_search([1,2,3,4],3) == 2
+
+
+Example 21:
+Task: Check if a number is positive, negative or zero
+Code:
+def check_number(n):
+    if n > 0:
+        return "Positive"
+    elif n < 0:
+        return "Negative"
+    return "Zero"
+Explanation:
+Checks sign of number.
+Test Cases:
+assert check_number(5) == "Positive"
+
+
+Example 22:
+Task: Find minimum number in list
+Code:
+def find_min(lst):
+    return min(lst)
+Explanation:
+Python min() finds smallest value.
+Test Cases:
+assert find_min([3,1,2]) == 1
+
+
+Example 23:
+Task: Count consonants in string
+Code:
+def count_consonants(s):
+    vowels = "aeiouAEIOU"
+    return sum(1 for ch in s if ch.isalpha() and ch not in vowels)
+Explanation:
+Counts letters that are not vowels.
+Test Cases:
+assert count_consonants("hello") == 3
+
+
+Example 24:
+Task: Check if list is sorted
+Code:
+def is_sorted(lst):
+    return lst == sorted(lst)
+Explanation:
+Compare with sorted list.
+Test Cases:
+assert is_sorted([1,2,3]) == True
+
+
+Example 25:
+Task: Swap two numbers
+Code:
+def swap(a, b):
+    return b, a
+Explanation:
+Swaps values.
+Test Cases:
+assert swap(1,2) == (2,1)
+
+
+Example 26:
+Task: Find length of string without len()
+Code:
+def string_length(s):
+    count = 0
+    for _ in s:
+        count += 1
+    return count
+Explanation:
+Counts characters manually.
+Test Cases:
+assert string_length("abc") == 3
+
+
+Example 27:
+Task: Check if number is perfect square
+Code:
+def is_perfect_square(n):
+    return int(n**0.5)**2 == n
+Explanation:
+Square root squared equals number.
+Test Cases:
+assert is_perfect_square(16) == True
+
+
+Example 28:
+Task: Convert string to uppercase
+Code:
+def to_upper(s):
+    return s.upper()
+Explanation:
+Uses built-in upper().
+Test Cases:
+assert to_upper("abc") == "ABC"
+
+
+Example 29:
+Task: Convert string to lowercase
+Code:
+def to_lower(s):
+    return s.lower()
+Explanation:
+Uses lower().
+Test Cases:
+assert to_lower("ABC") == "abc"
+
+
+Example 30:
+Task: Find sum of list
+Code:
+def sum_list(lst):
+    return sum(lst)
+Explanation:
+Built-in sum().
+Test Cases:
+assert sum_list([1,2,3]) == 6
+
+
+Example 31:
+Task: Find product of list
+Code:
+def product_list(lst):
+    result = 1
+    for i in lst:
+        result *= i
+    return result
+Explanation:
+Multiply elements.
+Test Cases:
+assert product_list([1,2,3]) == 6
+
+
+Example 32:
+Task: Find largest string in list
+Code:
+def longest_string(lst):
+    return max(lst, key=len)
+Explanation:
+Max by length.
+Test Cases:
+assert longest_string(["a","abc","ab"]) == "abc"
+
+
+Example 33:
+Task: Check if string contains digit
+Code:
+def has_digit(s):
+    return any(ch.isdigit() for ch in s)
+Explanation:
+Checks digit presence.
+Test Cases:
+assert has_digit("a1") == True
+
+
+Example 34:
+Task: Remove spaces from string
+Code:
+def remove_spaces(s):
+    return s.replace(" ", "")
+Explanation:
+Removes spaces.
+Test Cases:
+assert remove_spaces("a b") == "ab"
+
+
+Example 35:
+Task: Find average of list
+Code:
+def average(lst):
+    return sum(lst)/len(lst)
+Explanation:
+Sum divided by count.
+Test Cases:
+assert average([2,4,6]) == 4
+
+
+Example 36:
+Task: Count occurrences of element
+Code:
+def count_occurrence(lst, x):
+    return lst.count(x)
+Explanation:
+Counts occurrences.
+Test Cases:
+assert count_occurrence([1,2,2],2) == 2
+
+
+Example 37:
+Task: Reverse list
+Code:
+def reverse_list(lst):
+    return lst[::-1]
+Explanation:
+Uses slicing.
+Test Cases:
+assert reverse_list([1,2,3]) == [3,2,1]
+
+
+Example 38:
+Task: Find intersection of lists
+Code:
+def intersection(a,b):
+    return list(set(a)&set(b))
+Explanation:
+Set intersection.
+Test Cases:
+assert set(intersection([1,2],[2,3])) == {2}
+
+
+Example 39:
+Task: Check leap year
+Code:
+def is_leap(year):
+    return year%4==0 and (year%100!=0 or year%400==0)
+Explanation:
+Leap year rule.
+Test Cases:
+assert is_leap(2020) == True
+
+
+Example 40:
+Task: Convert Celsius to Fahrenheit
+Code:
+def c_to_f(c):
+    return (c*9/5)+32
+Explanation:
+Conversion formula.
+Test Cases:
+assert c_to_f(0) == 32
+
+
+Example 41:
+Task: Convert Fahrenheit to Celsius
+Code:
+def f_to_c(f):
+    return (f-32)*5/9
+Explanation:
+Conversion formula.
+Test Cases:
+assert f_to_c(32) == 0
+
+
+Example 42:
+Task: Check if list is empty
+Code:
+def is_empty(lst):
+    return len(lst) == 0
+Explanation:
+Check length.
+Test Cases:
+assert is_empty([]) == True
+
+
+Example 43:
+Task: Remove element from list
+Code:
+def remove_element(lst, x):
+    lst.remove(x)
+    return lst
+Explanation:
+Removes element.
+Test Cases:
+assert remove_element([1,2,3],2) == [1,3]
+
+
+Example 44:
+Task: Find index of element
+Code:
+def find_index(lst, x):
+    return lst.index(x)
+Explanation:
+Returns index.
+Test Cases:
+assert find_index([1,2,3],2) == 1
+
+
+Example 45:
+Task: Check substring
+Code:
+def is_substring(a,b):
+    return a in b
+Explanation:
+Check presence.
+Test Cases:
+assert is_substring("he","hello") == True
+
+
+Example 46:
+Task: Replace character in string
+Code:
+def replace_char(s,a,b):
+    return s.replace(a,b)
+Explanation:
+Replace character.
+Test Cases:
+assert replace_char("aab","a","b") == "bbb"
+
+
+Example 47:
+Task: Check if number divisible by 5
+Code:
+def divisible_by_5(n):
+    return n%5==0
+Explanation:
+Check modulo.
+Test Cases:
+assert divisible_by_5(10) == True
+
+
+Example 48:
+Task: Square of number
+Code:
+def square(n):
+    return n*n
+Explanation:
+Multiply itself.
+Test Cases:
+assert square(4) == 16
+
+
+Example 49:
+Task: Cube of number
+Code:
+def cube(n):
+    return n*n*n
+Explanation:
+Multiply three times.
+Test Cases:
+assert cube(3) == 27
+
+
+Example 50:
+Task: Check if list contains element
+Code:
+def contains(lst,x):
+    return x in lst
+Explanation:
+Checks membership.
+Test Cases:
+assert contains([1,2,3],2) == True
