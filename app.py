@@ -41,28 +41,41 @@ run_code_option = st.checkbox("Run generated code")
 # --------------------------------------------------
 
 @st.cache_resource
+import os
+from langchain_community.document_loaders import TextLoader, PyPDFLoader
+
 def create_vector_db():
-    loader = TextLoader(
-        "knowledge_base/python_examples.txt",
-        encoding="utf-8"
-    )
+    # Use a RELATIVE path (important for Streamlit Cloud)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    DATA_PATH = os.path.join(BASE_DIR, "data")
 
-    documents = loader.load()
+    documents = []
 
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=700,
-        chunk_overlap=100
-    )
+    # Load all supported files safely
+    for file in os.listdir(DATA_PATH):
+        file_path = os.path.join(DATA_PATH, file)
 
-    chunks = splitter.split_documents(documents)
+        try:
+            if file.endswith(".txt"):
+                loader = TextLoader(file_path, encoding="utf-8")
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+            elif file.endswith(".pdf"):
+                loader = PyPDFLoader(file_path)
 
-    vector_db = FAISS.from_documents(chunks, embeddings)
+            else:
+                print(f"Skipping unsupported file: {file}")
+                continue
 
-    return vector_db
+            docs = loader.load()
+            documents.extend(docs)
+
+        except Exception as e:
+            print(f"❌ Error loading {file_path}: {e}")
+
+    if not documents:
+        raise RuntimeError("No documents loaded. Check your /data folder.")
+
+    return documents
 
 
 # --------------------------------------------------
