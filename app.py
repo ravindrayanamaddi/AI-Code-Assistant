@@ -44,38 +44,31 @@ run_code_option = st.checkbox("Run generated code")
 
 @st.cache_resource
 def create_vector_db():
-    # Use a RELATIVE path (important for Streamlit Cloud)
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     DATA_PATH = os.path.join(BASE_DIR, "data")
 
+    if not os.path.exists(DATA_PATH):
+        os.makedirs(DATA_PATH)
+        raise RuntimeError(
+            f"⚠️ 'data' folder was missing. Created at {DATA_PATH}. "
+            f"Now add files and redeploy."
+        )
+
     documents = []
 
-    # Load all supported files safely
     for file in os.listdir(DATA_PATH):
         file_path = os.path.join(DATA_PATH, file)
 
         try:
-            if file.endswith(".txt"):
-                loader = TextLoader(file_path, encoding="utf-8")
-
-            elif file.endswith(".pdf"):
-                loader = PyPDFLoader(file_path)
-
-            else:
-                print(f"Skipping unsupported file: {file}")
-                continue
-
-            docs = loader.load()
-            documents.extend(docs)
-
+            loader = TextLoader(file_path, encoding="utf-8")
+            documents.extend(loader.load())
         except Exception as e:
-            print(f"❌ Error loading {file_path}: {e}")
+            print(f"Error loading {file}: {e}")
 
     if not documents:
-        raise RuntimeError("No documents loaded. Check your /data folder.")
+        raise RuntimeError("❌ No files found in /data folder")
 
     return documents
-
 
 # --------------------------------------------------
 # 4. Extract Code, Explanation, Tests from RAG Context
